@@ -1,0 +1,15 @@
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.out
+/build/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
