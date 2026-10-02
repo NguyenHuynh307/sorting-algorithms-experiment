@@ -1,0 +1,72 @@
+[
+  {
+    "file": "d01_ascending.bin",
+    "elements": 1000000,
+    "type": "tăng dần",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d02_descending.bin",
+    "elements": 1000000,
+    "type": "giảm dần",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d03_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d04_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d05_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d06_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d07_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d08_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d09_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  },
+  {
+    "file": "d10_random.bin",
+    "elements": 1000000,
+    "type": "ngẫu nhiên",
+    "bytes": 8000000,
+    "dtype": "float64"
+  }
+]
