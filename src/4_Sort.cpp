@@ -110,9 +110,11 @@ void QuickSort(double a[], int left, int right) {
         QuickSort(a, i, right);
 }
 
+void StdSort(double a[], int n) {
+    std::sort(a, a + n);
+}
 
 // HÀM HỖ TRỢ ĐỌC DỮ LIỆU: thuật toán nhận dữ liệu từ các file .bin.
-
 bool readBinary(const string& filename, vector<double>& a) {
     ifstream in(filename, ios::binary);
     if (!in) {
@@ -129,7 +131,8 @@ bool readBinary(const string& filename, vector<double>& a) {
         return false;
     }
 
-    const size_t n = static_cast<size_t>(bytes / static_cast<streamoff>(sizeof(double)));
+    const size_t n =
+        static_cast<size_t>(bytes / static_cast<streamoff>(sizeof(double)));
     a.resize(n);
 
     in.read(reinterpret_cast<char*>(a.data()), static_cast<streamsize>(bytes));
@@ -142,19 +145,22 @@ bool readBinary(const string& filename, vector<double>& a) {
     return true;
 }
 
-// ĐO THỜI GIAN: lấy tg gốc của thuật toán sắp xếp chứ không phải toàn bộ của ctrinh.
+// ĐO THỜI GIAN: lấy thời gian của thuật toán sắp xếp, không phải toàn bộ thời gian chạy chương trình.
 template <typename SortFunction>
 long long measureTime(vector<double>& a, SortFunction sortFunction) {
     const auto start = chrono::steady_clock::now();
     sortFunction(a);
     const auto finish = chrono::steady_clock::now();
 
-    return chrono::duration_cast<chrono::milliseconds>(finish - start).count();
+    return chrono::duration_cast<chrono::milliseconds>(
+        finish - start
+    ).count();
 }
 
 bool isSorted(const vector<double>& a) {
     return is_sorted(a.begin(), a.end());
 }
+
 
 int main() {
     const vector<string> files = {
@@ -185,45 +191,77 @@ int main() {
 
     for (size_t idx = 0; idx < files.size(); idx++) {
         const string& filename = files[idx];
+
         cout << "\n=== Du lieu " << idx + 1 << " ===\n";
         cout << filename << '\n';
 
         // QuickSort: đọc lại dữ liệu gốc
         vector<double> a;
-        if (!readBinary(filename, a)) return 1;
+        if (!readBinary(filename, a))
+            return 1;
+
         const long long tQuick = measureTime(a, [](vector<double>& x) {
             if (!x.empty())
-                QuickSort(x.data(), 0, static_cast<int>(x.size()) - 1);
+                QuickSort(
+                    x.data(),
+                    0,
+                    static_cast<int>(x.size()) - 1
+                );
         });
+
         const bool okQuick = isSorted(a);
+
 
         // HeapSort: đọc lại dữ liệu gốc
         a.clear();
-        if (!readBinary(filename, a)) return 1;
+        if (!readBinary(filename, a))
+            return 1;
+
         const long long tHeap = measureTime(a, [](vector<double>& x) {
-            HeapSort(x.data(), static_cast<int>(x.size()));
+            HeapSort(
+                x.data(),
+                static_cast<int>(x.size())
+            );
         });
+
         const bool okHeap = isSorted(a);
+
 
         // MergeSort: đọc lại dữ liệu gốc
         a.clear();
-        if (!readBinary(filename, a)) return 1;
+        if (!readBinary(filename, a))
+            return 1;
+
         const long long tMerge = measureTime(a, [](vector<double>& x) {
             if (!x.empty())
-                MergeSort(x.data(), 0, static_cast<int>(x.size()) - 1);
+                MergeSort(
+                    x.data(),
+                    0,
+                    static_cast<int>(x.size()) - 1
+                );
         });
+
         const bool okMerge = isSorted(a);
+
 
         // std::sort: đọc lại dữ liệu gốc
         a.clear();
-        if (!readBinary(filename, a)) return 1;
+        if (!readBinary(filename, a))
+            return 1;
+
         const long long tStd = measureTime(a, [](vector<double>& x) {
-            sort(x.begin(), x.end());
+            StdSort(
+                x.data(),
+                static_cast<int>(x.size())
+            );
         });
+
         const bool okStd = isSorted(a);
 
+
         if (!okQuick || !okHeap || !okMerge || !okStd) {
-            cerr << "LOI: co thuat toan khong sap xep dung du lieu " << idx + 1 << '\n';
+            cerr << "LOI: co thuat toan khong sap xep dung du lieu "
+                 << idx + 1 << '\n';
             return 1;
         }
 
@@ -245,6 +283,7 @@ int main() {
     }
 
     csv << fixed << setprecision(3);
+
     csv << "Trung binh,"
         << static_cast<double>(sumQuick / files.size()) << ','
         << static_cast<double>(sumHeap / files.size()) << ','
