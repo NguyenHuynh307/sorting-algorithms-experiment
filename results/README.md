@@ -1,5 +1,18 @@
 # Kết quả thử nghiệm
 
-Lưu bảng thời gian thực thi, file CSV kết quả và hình biểu đồ tại đây.
+Thư mục này chứa kết quả đo thời gian thực thi của 4 thuật toán trên 10 bộ dữ liệu:
 
-Phần đo thời gian và phần nhận xét do người thực hiện hoàn thành sau khi chạy các chương trình.
+- QuickSort
+- HeapSort
+- MergeSort
+- `std::sort` của C++
+
+## File kết quả
+
+- `results.csv`: chứa thời gian thực thi của từng thuật toán trên 10 bộ dữ liệu.
+
+## Báo cáo
+
+Bảng kết quả, biểu đồ và nhận xét thực nghiệm được trình bày trong:
+
+`../report/Bao_cao_thuc_nghiem.pdf`
